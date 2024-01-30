@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 using Business.Abstract;
 using Business.Concrete;
 using ConsoleUI;
-using DataAccess.Abstract;
+using DataAccess.Abstract.Person;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 
@@ -591,10 +591,10 @@ Console.WriteLine("-------");
 //entityRepository.UpdateEntity(student);
 //entityRepository.UpdateEntity(instructor);
 
-IUserDal userDal = new SqlDbUserDal();  //new InMemoryUserDal();
+//IUserDal userDal = new SqlDbUserDal();  //new InMemoryUserDal();
 // Dependency Injection // IoC
 
-userDal.Add( user );
+//userDal.Add( user );
 #endregion
 
 // Configuration.cs

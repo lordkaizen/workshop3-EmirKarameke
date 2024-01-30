@@ -3,8 +3,10 @@ using Business.Abstract;
 using Business.BusinessRules;
 using Business.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Abstract.Person;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.EntityFramework.Contexts;
+using DataAccess.Concrete.EntityFramework.Person;
 using DataAccess.Concrete.InMemory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +37,22 @@ public static class ServiceCollectionBusinessExtension
             .AddScoped<IModelDal, EfModelDal>()
             .AddScoped<ModelBusinessRules>(); // Fluent
 
+        services
+            .AddScoped<IUserService, UserManager>()
+            .AddScoped<IUserDal, EfUserDal>()
+            .AddScoped<UserBusinessRules>();
+        services
+            .AddScoped<ICustomerService, CustomerManager>()
+            .AddScoped<ICustomerDal, EfCustomerDal>()
+            .AddScoped<CustomerBusinessRules>();
+        services
+            .AddScoped<IIndividualCustomerService, IndividualCustomerManager>()
+            .AddScoped<IIndividualCustomerDal, EfIndividualCustomer>()
+            .AddScoped<IndividualCustomerBusinessRules>();
+        services
+            .AddScoped<ICorporateCustomerService, CorporateCustomerManager>()
+            .AddScoped<ICorporateCustomerDal, EfCorporateCustomerDal>()
+            .AddScoped<CorporateCustomerBusinessRules>();
         services.AddAutoMapper(Assembly.GetExecutingAssembly()); // AutoMapper.Extensions.Microsoft.DependencyInjection NuGet Paketi
         // Reflection yöntemiyle Profile class'ını kalıtım alan tüm class'ları bulur ve AutoMapper'a ekler.
 
